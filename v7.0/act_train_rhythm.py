@@ -270,7 +270,7 @@ def step2_train_model(model, PARAMS):
             plot_history(history)
     else: # too much data! read it every turn.
         for epoch in tqdm(range(EPOCHS)):
-            for map_batch in tqdm(range(np.ceil(len(train_file_list) / data_split_count).astype(int))): # hmmmmm
+            for map_batch in range(np.ceil(len(train_file_list) / data_split_count).astype(int)): # hmmmmm
                 if map_batch == 0:
                     train_data2, div_data2, train_labels2 = read_some_npzs_and_preprocess(train_file_list[map_batch * data_split_count : (map_batch+1) * data_split_count]);
                     (new_train_data, new_div_data, new_train_labels), (test_data, test_div_data, test_labels) = train_test_split(train_data2, div_data2, train_labels2);
