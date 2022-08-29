@@ -4,8 +4,9 @@
 # Part 2 action script
 #
 
-import tensorflow as tf
+from tqdm import tqdm
 from tensorflow import keras
+import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
 import os, re
@@ -268,8 +269,8 @@ def step2_train_model(model, PARAMS):
         if PARAMS["plot_history"]:
             plot_history(history)
     else: # too much data! read it every turn.
-        for epoch in range(EPOCHS):
-            for map_batch in range(np.ceil(len(train_file_list) / data_split_count).astype(int)): # hmmmmm
+        for epoch in tqdm(range(EPOCHS)):
+            for map_batch in tqdm(range(np.ceil(len(train_file_list) / data_split_count).astype(int))): # hmmmmm
                 if map_batch == 0:
                     train_data2, div_data2, train_labels2 = read_some_npzs_and_preprocess(train_file_list[map_batch * data_split_count : (map_batch+1) * data_split_count]);
                     (new_train_data, new_div_data, new_train_labels), (test_data, test_div_data, test_labels) = train_test_split(train_data2, div_data2, train_labels2);
@@ -280,8 +281,8 @@ def step2_train_model(model, PARAMS):
                                     validation_split=0.2, verbose=0, batch_size=batch_size,
                                     callbacks=[])
                 # Manually print the dot
-                print('.', end='');
-            print('');
+                #print('.', end='');
+            #print('');
     return model;
 
 # [loss, mae] = model.evaluate([test_data, test_div_data], test_labels, verbose=0)
