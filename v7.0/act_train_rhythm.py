@@ -3,10 +3,10 @@
 #
 # Part 2 action script
 #
-
 from tqdm import tqdm
 import tensorflow as tf
 from tensorflow import keras
+import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
 import os, re
@@ -281,8 +281,8 @@ def step2_train_model(model, PARAMS):
                                     validation_split=0.2, verbose=0, batch_size=batch_size,
                                     callbacks=[])
                 # Manually print the dot
-            #     print('.', end='');
-            # print('');
+                #print('.', end='');
+            #print('');
     return model;
 
 # [loss, mae] = model.evaluate([test_data, test_div_data], test_labels, verbose=0)
